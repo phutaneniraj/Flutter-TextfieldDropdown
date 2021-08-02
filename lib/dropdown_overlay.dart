@@ -46,6 +46,7 @@ class DropdownOverlay {
                       itemCount: items.length,
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
+                          behavior: HitTestBehavior.translucent,
                           child: Container(
                             alignment: Alignment.center,
                             height: height,
@@ -66,6 +67,7 @@ class DropdownOverlay {
                           ),
                           onTap: (){
                             onSelect(index, items[index]);
+
                             remove();
                           },
                         );

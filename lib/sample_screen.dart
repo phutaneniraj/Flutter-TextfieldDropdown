@@ -38,11 +38,15 @@ class _SampleScreenState extends State<SampleScreen> {
               Container(
                 margin: EdgeInsets.only(left: 150),
                 child: DropdownWidget(
+                  initialValue: '0',
                   context: context,
                   globalKey: _globalKey,
                   items: items,
                   onSelect: (index, value){
                     print(index.toString()+' : '+value.toString());
+                    setState(() {
+                      selectedValue = items[index].toString();
+                    });
                   },
                 )
               ),
