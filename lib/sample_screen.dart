@@ -37,7 +37,14 @@ class _SampleScreenState extends State<SampleScreen> {
             children: [
               Container(
                 margin: EdgeInsets.only(left: 150),
-                child: DropdownWidget(items: items, globalKey: _globalKey, context: context)
+                child: DropdownWidget(
+                  context: context,
+                  globalKey: _globalKey,
+                  items: items,
+                  onSelect: (index, value){
+                    print(index.toString()+' : '+value.toString());
+                  },
+                )
               ),
               Expanded(
                   child: Text(

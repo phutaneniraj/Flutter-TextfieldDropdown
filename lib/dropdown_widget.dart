@@ -6,12 +6,14 @@ class DropdownWidget extends StatefulWidget {
   final List items;
   final GlobalKey globalKey;
   final BuildContext context;
+  final Function onSelect;
   final initialValue;
 
   DropdownWidget({
     @required this.items,
     @required this.globalKey,
     @required this.context,
+    @required this.onSelect,
     this.initialValue
   });
 
@@ -44,7 +46,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
             icon: Icon(Icons.arrow_drop_down_circle_outlined),
             onPressed: (){
               overlay = DropdownOverlay(context);
-              overlay.show(iconKey, widget.globalKey, widget.items);
+              overlay.show(iconKey, widget.globalKey, widget.items, widget.onSelect);
             }
         ),
       );

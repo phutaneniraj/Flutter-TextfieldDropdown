@@ -8,7 +8,7 @@ class DropdownOverlay {
 
   DropdownOverlay(this.context);
 
-  void show(GlobalKey dropdownButtonKey, GlobalKey textKey, List items){
+  void show(GlobalKey dropdownButtonKey, GlobalKey textKey, List items, Function onSelect){
     if(_isShowing){
       return;
     }
@@ -20,7 +20,7 @@ class DropdownOverlay {
     Size size = Size(textBox.size.width, y['Height']);
     Offset offset = Offset(xOffset, y['yOffset']);
 
-    _overlayEntry = overlayEntry(offset: offset, size: size, height: textBox.size.height, items: items);
+    _overlayEntry = overlayEntry(offset: offset, size: size, height: textBox.size.height, items: items, onSelect: onSelect);
     Overlay.of(context).insert(_overlayEntry);
     _isShowing = true;
   }
@@ -30,6 +30,7 @@ class DropdownOverlay {
     @required Offset offset,
     @required double height,
     @required List items,
+    @required Function onSelect,
   }){
     return OverlayEntry(
         builder: (context) {
@@ -63,7 +64,10 @@ class DropdownOverlay {
                               ],
                             )
                           ),
-                          onTap: (){ },
+                          onTap: (){
+                            onSelect(index, items[index]);
+                            remove();
+                          },
                         );
                       }
                   )
